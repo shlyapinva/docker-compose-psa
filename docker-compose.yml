@@ -1,0 +1,46 @@
+# https://hub.docker.com/_/postgres
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: "worker"
+      POSTGRES_PASSWORD: "worker"
+      POSTGRES_DB: "app"
+
+  adminer:
+    image: adminer
+    restart: always
+    environment:
+      - VIRTUAL_HOST=adminer.localhost
+
+#https://hub.docker.com/r/jwilder/nginx-proxy
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+#      - ./static:/usr/share/nginx/html/:ro
+
+  static:
+    image: dragas/thttpd
+    environment:
+      - VIRTUAL_HOST=mysite.localhost
+    volumes:
+      - ./static:/var/www/http:ro
+      
+  psa:
+    build: python-sample-app/
+    environment:
+      - VIRTUAL_HOST=api.mysite.localhost
+#      - VIRTUAL_PROTO=uwsgi
+      - FLASK_APP=app.py
+      - POSTGRESQL_URL=postgresql://worker:worker@db/app
+
+    depends_on:
+      - db
+#    entrypoint: ["wait-for-it.sh", "-s" , "-t", "20", "db:5432", "--"]
