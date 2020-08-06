@@ -17,7 +17,7 @@ RUN useradd -m ${USER} && \
       
 WORKDIR /home/${USER}
 
-USER user ${USER}
+USER ${USER}
 
 RUN git clone https://github.com/mbaran0v/python-sample-app &&\
     cd ./python-sample-app && \
@@ -32,5 +32,4 @@ EXPOSE 5000
 #CMD ["python3", "app.py"]
 #ENTRYPOINT [ "entrypoint.sh" ]
 CMD sleep 15 &&python3 app.py
-
 

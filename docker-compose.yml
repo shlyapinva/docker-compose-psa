@@ -44,3 +44,14 @@ services:
     depends_on:
       - db
 #    entrypoint: ["wait-for-it.sh", "-s" , "-t", "20", "db:5432", "--"]
+
+
+#test5_psa             latest              e5aba592c74a        About a minute ago   441MB
+#python                latest              6feb119dd186        28 hours ago         882MB
+#postgres              latest              4b52913b0a3a        2 weeks ago          313MB
+#adminer               latest              b1c6e1579623        3 weeks ago          90.4MB
+#ubuntu                latest              adafef2e596e        4 weeks ago          73.9MB
+#dragas/thttpd         latest              25fdfb718f93        5 weeks ago          5.74MB
+#jwilder/nginx-proxy   latest              fcb5a96e19c1        5 months ago         161MB
+#hello-world           latest              bf756fb1ae65        7 months ago         13.3kB
+#jwilder/whoami        latest              89be8564e650        2 years ago          10.1MB
