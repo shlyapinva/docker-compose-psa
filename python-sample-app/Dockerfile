@@ -30,6 +30,12 @@ WORKDIR /home/${USER}/python-sample-app
 EXPOSE 5000
 
 #CMD ["python3", "app.py"]
-#ENTRYPOINT [ "entrypoint.sh" ]
-CMD sleep 15 &&python3 app.py
+
+
+ADD entrypoint.py ./
+ENTRYPOINT ["python3"]
+CMD ["entrypoint.py"]
+
+#CMD python3 entrypoint.py
+#CMD sleep 15 &&python3 app.py
 

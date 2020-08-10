@@ -39,7 +39,13 @@ services:
       - VIRTUAL_HOST=api.mysite.localhost
 #      - VIRTUAL_PROTO=uwsgi
       - FLASK_APP=app.py
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=worker
+      - POSTGRES_PASSWORD=worker
+      - POSTGRES_DB=app
       - POSTGRESQL_URL=postgresql://worker:worker@db/app
+#    volumes:
+#      - ./python-sample-app/enterpoint.py:/enterpoint.py
 
     depends_on:
       - db
